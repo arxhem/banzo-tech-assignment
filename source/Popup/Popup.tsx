@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {browser, Tabs} from 'webextension-polyfill-ts';
-
-import './styles.scss';
+import browser, {Tabs} from "webextension-polyfill";
 
 function openWebPage(url: string): Promise<Tabs.Tab> {
   return browser.tabs.create({url});
@@ -15,7 +13,7 @@ const Popup: React.FC = () => {
         id="options__button"
         type="button"
         onClick={(): Promise<Tabs.Tab> => {
-          return openWebPage('options.html');
+          return openWebPage('/Options/options.html');
         }}
       >
         Options Page

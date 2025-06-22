@@ -1,12 +1,16 @@
-@import "../styles/fonts";
-@import "../styles/reset";
-@import "../styles/variables";
+@use "../styles/fonts";
+@use "../styles/reset";
+@use "../styles/variables";
 
 body {
-  color: $black;
-  background-color: $greyWhite;
+  color: variables.$black;
+  background-color: variables.$greyWhite;
+  width: 100%;
 }
 
+::placeholder {
+  color: blue;
+}
 
 #popup {
   min-width: 350px;

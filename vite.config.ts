@@ -1,0 +1,108 @@
+import { defineConfig } from "vite";
+import path from "node:path";
+import react from "@vitejs/plugin-react";
+import process from "node:process";
+import zipPack from "vite-plugin-zip-pack";
+import checker from 'vite-plugin-checker';
+
+import vitePluginWextManifest from "./vite-plugin-wext-manifest";
+
+export default defineConfig(({ mode }) => {
+    const isDevelopment = mode !== "production";
+    const sourcePath = path.resolve(__dirname, "source");
+    const destPath = path.resolve(__dirname, "extension");
+    const targetBrowser = process.env.TARGET_BROWSER || "chrome";
+
+    const getOutDir = () => path.resolve(destPath, targetBrowser);
+
+    return {
+        root: sourcePath,
+
+        publicDir: path.resolve(sourcePath, "public"),
+
+        resolve: {
+            alias: {
+                "@": path.resolve(sourcePath),
+                "~": path.resolve(__dirname, "node_modules"),
+            },
+        },
+
+        plugins: [
+            react(),
+
+            checker({
+                typescript: {
+                    tsconfigPath: './tsconfig.json'
+                },
+            }),
+
+            vitePluginWextManifest({
+                manifestPath: "manifest.json",
+                usePackageJSONVersion: true,
+            }),
+
+            !isDevelopment &&
+            zipPack({
+                outDir: destPath,
+                outFileName: `${targetBrowser}.zip`,
+                inDir: getOutDir(),
+            }),
+        ],
+
+        build: {
+            outDir: getOutDir(),
+
+            emptyOutDir: !isDevelopment,
+
+            sourcemap: isDevelopment ? "inline" : false,
+
+            minify: mode === "production",
+
+            rollupOptions: {
+                input: {
+                    // For UI pages, use the HTML file as the entry.
+                    // Vite will find the <script> tag inside and bundle it.
+                    popup: path.resolve(sourcePath, 'Popup/popup.html'),
+                    options: path.resolve(sourcePath, 'Options/options.html'),
+                    // For script-only parts, use the TS file directly.
+                    background: path.resolve(sourcePath, 'Background/index.ts'),
+                    contentScript: path.resolve(sourcePath, 'ContentScript/index.ts'),
+                },
+
+                output: {
+                    // For main entry scripts (background, contentScript, etc.)
+                    entryFileNames: "assets/js/[name].bundle.js",
+
+                    // For other assets like CSS
+                    assetFileNames: (assetInfo) => {
+                        if (/\.(css|s[ac]ss|less)$/.test(assetInfo.name)) {
+                            return "assets/css/[name]-[hash].css";
+                        }
+
+                        // For other assets like fonts or images
+                        return "assets/[name]-[hash].[ext]";
+                    },
+
+                    // For code-split chunks (if any)
+                    chunkFileNames: "assets/js/[name]-[hash].chunk.js",
+                },
+            },
+
+            terserOptions: {
+                mangle: true,
+                compress: {
+                    drop_console: true,
+                    drop_debugger: true,
+                },
+                format: {
+                    comments: false,
+                },
+            },
+        },
+
+        define: {
+            __DEV__: isDevelopment,
+            __TARGET_BROWSER__: JSON.stringify(targetBrowser),
+        },
+    };
+});
