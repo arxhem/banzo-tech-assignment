@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import process from "node:process";
 import zipPack from "vite-plugin-zip-pack";
 import checker from 'vite-plugin-checker';
+import clean from 'vite-plugin-clean';
 
 import vitePluginWextManifest from "./vite-plugin-wext-manifest";
 
@@ -14,6 +15,22 @@ export default defineConfig(({ mode }) => {
     const targetBrowser = process.env.TARGET_BROWSER || "chrome";
 
     const getOutDir = () => path.resolve(destPath, targetBrowser);
+
+    const getExtensionZipFileName = () => {
+        switch (targetBrowser) {
+            case 'opera': {
+                return `${targetBrowser}.crx`;
+            }
+
+            case 'firefox': {
+                return `${targetBrowser}.xpi`;
+            }
+
+            default: {
+                return `${targetBrowser}.zip`;
+            }
+        }
+    };
 
     return {
         root: sourcePath,
@@ -35,12 +52,21 @@ export default defineConfig(({ mode }) => {
         plugins: [
             react(),
 
+            // delete previous built compressed file
+            clean({
+                targetFiles: [
+                    path.resolve(destPath, getExtensionZipFileName())
+                ],
+            }),
+
+            // Run typescript checker in worker thread
             checker({
                 typescript: {
                     tsconfigPath: './tsconfig.json'
                 },
             }),
 
+            // Generate manifest.json for the browser
             vitePluginWextManifest({
                 manifestPath: "manifest.json",
                 usePackageJSONVersion: true,
@@ -48,9 +74,10 @@ export default defineConfig(({ mode }) => {
 
             !isDevelopment &&
             zipPack({
-                outDir: destPath,
-                outFileName: `${targetBrowser}.zip`,
                 inDir: getOutDir(),
+                outDir: destPath,
+                outFileName: getExtensionZipFileName(),
+                enableLogging: true,
             }),
         ],
 

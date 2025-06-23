@@ -45,6 +45,7 @@
     "typescript": "5.8.3",
     "vite": "6.3.5",
     "vite-plugin-checker": "0.9.3",
+    "vite-plugin-clean": "2.0.1",
     "vite-plugin-zip-pack": "1.2.4"
   }
 }
