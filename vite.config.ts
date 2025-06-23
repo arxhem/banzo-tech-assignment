@@ -27,6 +27,11 @@ export default defineConfig(({ mode }) => {
             },
         },
 
+        define: {
+            __DEV__: isDevelopment,
+            __TARGET_BROWSER__: JSON.stringify(targetBrowser),
+        },
+
         plugins: [
             react(),
 
@@ -98,11 +103,6 @@ export default defineConfig(({ mode }) => {
                     comments: false,
                 },
             },
-        },
-
-        define: {
-            __DEV__: isDevelopment,
-            __TARGET_BROWSER__: JSON.stringify(targetBrowser),
         },
     };
 });
