@@ -5,8 +5,7 @@ import process from "node:process";
 import zipPack from "vite-plugin-zip-pack";
 import checker from 'vite-plugin-checker';
 import clean from 'vite-plugin-clean';
-
-import vitePluginWextManifest from "./vite-plugin-wext-manifest";
+import WextManifest from "vite-plugin-wext-manifest";
 
 export default defineConfig(({ mode }) => {
     const isDevelopment = mode !== "production";
@@ -67,7 +66,7 @@ export default defineConfig(({ mode }) => {
             }),
 
             // Generate manifest.json for the browser
-            vitePluginWextManifest({
+            WextManifest({
                 manifestPath: "manifest.json",
                 usePackageJSONVersion: true,
             }),
