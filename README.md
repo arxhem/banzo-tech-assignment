@@ -1,13 +1,6 @@
 <h1 align="center">🚀 web-extension-starter</h1>
 <p align="center">Web Extension starter to build "Write Once Run on Any Browser" extension</p>
 <div align="center">
-  <a href="https://travis-ci.com/abhijithvijayan/web-extension-starter">
-    <img src="https://travis-ci.com/abhijithvijayan/web-extension-starter.svg?branch=react-typescript" alt="Travis Build" />
-  </a>
-  </a>
-  <a href="https://david-dm.org/abhijithvijayan/web-extension-starter">
-    <img src="https://img.shields.io/david/abhijithvijayan/web-extension-starter.svg?colorB=orange" alt="DEPENDENCIES" />
-  </a>
   <a href="https://github.com/abhijithvijayan/web-extension-starter/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/abhijithvijayan/web-extension-starter.svg" alt="LICENSE" />
   </a>
@@ -77,7 +70,7 @@ curl -fsSL https://github.com/abhijithvijayan/web-extension-starter/archive/reac
 
 Ensure you have
 
-- [Node.js](https://nodejs.org) 10 or later installed
+- [Node.js](https://nodejs.org) 20 or later installed
 
 Then run the following:
 
