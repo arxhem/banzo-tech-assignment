@@ -1,20 +1,21 @@
 {
 	"extends": "@abhijithvijayan/tsconfig",
 	"compilerOptions": {
-		"target": "es5", // ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'.
-		"module": "preserve",
-		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
+		/* Let Vite control the final JS output */
+		"target": "ESNext",
+		"module": "ESNext",
+		"noEmit": true,
+
 		"lib": [
 			"dom",
 			"dom.iterable",
-			"esnext"
+			"ES2023"
 		],
-		"declaration": false,
+
+		/* Bundler-specific settings */
+		"moduleResolution": "bundler",
 		"isolatedModules": true,
-		/* Additional Checks */
-		"useDefineForClassFields": true,
-		"skipLibCheck": true,
+		"declaration": false
 	},
 	"include": [
 		"source"

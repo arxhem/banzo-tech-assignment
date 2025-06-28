@@ -106,7 +106,7 @@ export default defineConfig(({ mode }) => {
 
                     // For other assets like CSS
                     assetFileNames: (assetInfo) => {
-                        if (/\.(css|s[ac]ss|less)$/.test(assetInfo.name)) {
+                        if (!!assetInfo.name && /\.(css|s[ac]ss|less)$/.test(assetInfo.name)) {
                             return "assets/css/[name]-[hash].css";
                         }
 
