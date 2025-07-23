@@ -17,8 +17,8 @@ Run the following:
 
 - ### Which endpoints you chose and why
    - Endpoint: https://api.github.com/users/octocat
-   - Reason:
-   - This is a simple and public endpoint provided by GitHub that returns JSON data for a GitHub user.
+    - Reason:
+    - This is a simple and public endpoint provided by GitHub that returns JSON data for a GitHub user.
 
   - Reddit API
     - Endpoint: https://www.reddit.com/user/spez/about.json
