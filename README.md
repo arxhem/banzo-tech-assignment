@@ -29,13 +29,13 @@ Run the following:
 - ###  The flow of data from interception to display
 - <img width="1809" height="3553" alt="image" src="https://github.com/user-attachments/assets/2089870f-71f4-4d48-9dc5-b8396257bbb9" />
 
-- ###Request Interception & Flow Summary:
+- Request Interception & Flow Summary:
   - User clicks a button in the popup.
   - A message ({ action: "fetchGitHubUser" }) is sent to the background script.
   - The background script detects this, fetches the API, and returns the data.
   - The popup receives the response and updates the UI.
 
-- ###Any Challenges Faced and How They Were Solved
+- ### Any Challenges Faced and How They Were Solved
 While building the extension, I encountered several challenges:
 
 - Manifest Version Conflict:
