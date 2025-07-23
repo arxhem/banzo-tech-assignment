@@ -26,42 +26,9 @@ Run the following:
     - This Reddit API endpoint returns public information about a Reddit user in JSON format. It's suitable for browser extension testing
 
 - ### How your extension intercepts the requests
--  +--------------------+
-   |   Popup UI (React) |
-   +--------------------+
-           |
-           | [User Clicks "Fetch GitHub/Reddit"]
-           v
-+--------------------------------+
-| browser.runtime.sendMessage() |
-+--------------------------------+
-           |
-           v
-+-------------------------------+
-| Background Service Worker     |
-| - Listens for messages        |
-| - Makes Fetch API call        |
-|   to GitHub or Reddit         |
-+-------------------------------+
-           |
-           v
-+-----------------------------+
-| External API (GitHub/Reddit)|
-+-----------------------------+
-           |
-           v
-+-------------------------------+
-| Background receives response  |
-| Parses JSON / handles errors  |
-| Sends response back to popup  |
-+-------------------------------+
-           |
-           v
-+--------------------------+
-| Popup receives message   |
-| and updates UI           |
-+--------------------------+
-  
+- <img width="1809" height="3553" alt="image" src="https://github.com/user-attachments/assets/2089870f-71f4-4d48-9dc5-b8396257bbb9" />
+
+
 
 - ###Any Challenges Faced and How They Were Solved
 While building the extension, I encountered several challenges:
