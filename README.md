@@ -1,6 +1,6 @@
 
 
-Then run the following:
+Run the following:
 
 - `npm install` to install dependencies.
 - `npm run dev:chrome` to start the development server for chrome extension
