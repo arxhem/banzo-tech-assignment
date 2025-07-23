@@ -15,4 +15,12 @@ Run the following:
   - Click on the `Load Unpacked Extension…` button.
   - Select your browsers folder in `extension/`.
 
+- ### Which endpoints you chose and why
+   -Endpoint: https://api.github.com/users/octocat
+   -Reason:
+   -This is a simple and public endpoint provided by GitHub that returns JSON data for a GitHub user.
 
+     - Reddit API
+     -Endpoint: https://www.reddit.com/user/spez/about.json
+     -Reason:
+     -This Reddit API endpoint returns public information about a Reddit user in JSON format. It's suitable for browser extension testing
