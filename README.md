@@ -26,7 +26,7 @@ Run the following:
     - This Reddit API endpoint returns public information about a Reddit user in JSON format. It's suitable for browser extension testing
 
 - ### How your extension intercepts the requests
-      +--------------------+
+-  +--------------------+
    |   Popup UI (React) |
    +--------------------+
            |
@@ -61,6 +61,7 @@ Run the following:
 | Popup receives message   |
 | and updates UI           |
 +--------------------------+
+  
 
 - ###Any Challenges Faced and How They Were Solved
 While building the extension, I encountered several challenges:
