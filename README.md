@@ -16,7 +16,3 @@ Then run the following:
   - Select your browsers folder in `extension/`.
 
 
-
-## License
-
-MIT © [Abhijith Vijayan](https://abhijithvijayan.in)
