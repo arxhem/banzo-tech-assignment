@@ -25,6 +25,43 @@ Run the following:
     - Reason:
     - This Reddit API endpoint returns public information about a Reddit user in JSON format. It's suitable for browser extension testing
 
+- ### How your extension intercepts the requests
+      +--------------------+
+   |   Popup UI (React) |
+   +--------------------+
+           |
+           | [User Clicks "Fetch GitHub/Reddit"]
+           v
++--------------------------------+
+| browser.runtime.sendMessage() |
++--------------------------------+
+           |
+           v
++-------------------------------+
+| Background Service Worker     |
+| - Listens for messages        |
+| - Makes Fetch API call        |
+|   to GitHub or Reddit         |
++-------------------------------+
+           |
+           v
++-----------------------------+
+| External API (GitHub/Reddit)|
++-----------------------------+
+           |
+           v
++-------------------------------+
+| Background receives response  |
+| Parses JSON / handles errors  |
+| Sends response back to popup  |
++-------------------------------+
+           |
+           v
++--------------------------+
+| Popup receives message   |
+| and updates UI           |
++--------------------------+
+
 - ###Any Challenges Faced and How They Were Solved
 While building the extension, I encountered several challenges:
 
